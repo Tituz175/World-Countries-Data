@@ -1,5 +1,6 @@
 const buttonPopulation = document.querySelector(".population");
 const buttonLanguage = document.querySelector(".languages");
+const chatTitle = document.querySelector(".graph-title");
 
 let totalPopulation = 0;
 let worldPopulation = () => {
@@ -40,6 +41,7 @@ let countryValue;
 let populationOn = false;
 
 let populationDisplay = (world = "World", population = 7693165599) => {
+  chatTitle.textContent = "10 Most populated countries in the world";
   populationContainer = document.createElement("div");
   populationContainer.setAttribute("class", "population-container");
   countryName = document.createElement("div");
@@ -123,6 +125,7 @@ console.log(mostSpokenLanguages(countries, 10));
 let languageOn = false;
 
 let languageDisplay = (language, value) => {
+    chatTitle.textContent = "10 Most spoken languages in the world";
   languageContainer = document.createElement("div");
   languageContainer.setAttribute("class", "language-container");
   languageName = document.createElement("div");
