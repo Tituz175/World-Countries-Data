@@ -1,45 +1,5 @@
 const buttonPopulation = document.querySelector(".population");
-
-let mostSpokenLanguages = (countries, number) => {
-  // getting the whole languages from the countries object saving them inside language array
-  const language = [];
-  for (let i = 0; i < countries.length; i++) {
-    for (let j = 0; j < countries[i].languages.length; j++) {
-      language.push(countries[i].languages[j]);
-    }
-  }
-  // getting the each language count and saving it inside objLanguage object
-  const objLanguage = {};
-  language.forEach((element) => {
-    if (!objLanguage[element]) {
-      objLanguage[element] = 1;
-    } else {
-      objLanguage[element] += 1;
-    }
-  });
-  // serving each language agaist it count and storing it inside langArrObj array
-  const langArrObj = [];
-  for (const i in objLanguage) {
-    let objIndividual = {};
-    objIndividual.country = i;
-    objIndividual.count = objLanguage[i];
-    langArrObj.push(objIndividual);
-  }
-  // sorting the langArrObj array using the count key
-  langArrObj.sort(function (a, b) {
-    if (a.count > b.count) return -1;
-    if (a.count < b.count) return 1;
-    return 0;
-  });
-  const result = [];
-  // running a loop base on the requested number by the user
-  for (let i = 0; i < number; i++) {
-    result.push(langArrObj[i]);
-  }
-  return result;
-};
-
-console.log(mostSpokenLanguages(countries, 10));
+const buttonLanguage = document.querySelector(".languages");
 
 let totalPopulation = 0;
 let worldPopulation = () => {
@@ -101,7 +61,7 @@ let populationDisplay = (world = "World", population = 7693165599) => {
 };
 
 buttonPopulation.addEventListener("click", () => {
-  if (populationOn) {
+  if (populationOn || languageOn) {
     countryMother.innerHTML = "";
     populationDisplay();
     mostPopulatedCountries(countries, 10);
@@ -115,5 +75,86 @@ buttonPopulation.addEventListener("click", () => {
       populationDisplay(item.name, item.population);
     });
     populationOn = true;
+  }
+});
+
+let resultLang;
+let mostSpokenLanguages = (countries, number) => {
+  // getting the whole languages from the countries object saving them inside language array
+  const language = [];
+  for (let i = 0; i < countries.length; i++) {
+    for (let j = 0; j < countries[i].languages.length; j++) {
+      language.push(countries[i].languages[j]);
+    }
+  }
+  // getting the each language count and saving it inside objLanguage object
+  const objLanguage = {};
+  language.forEach((element) => {
+    if (!objLanguage[element]) {
+      objLanguage[element] = 1;
+    } else {
+      objLanguage[element] += 1;
+    }
+  });
+  // serving each language agaist it count and storing it inside langArrObj array
+  const langArrObj = [];
+  for (const i in objLanguage) {
+    let objIndividual = {};
+    objIndividual.country = i;
+    objIndividual.count = objLanguage[i];
+    langArrObj.push(objIndividual);
+  }
+  // sorting the langArrObj array using the count key
+  langArrObj.sort(function (a, b) {
+    if (a.count > b.count) return -1;
+    if (a.count < b.count) return 1;
+    return 0;
+  });
+  resultLang = [];
+  // running a loop base on the requested number by the user
+  for (let i = 0; i < number; i++) {
+    resultLang.push(langArrObj[i]);
+  }
+  return resultLang;
+};
+
+console.log(mostSpokenLanguages(countries, 10));
+
+let languageOn = false;
+
+let languageDisplay = (language, value) => {
+  languageContainer = document.createElement("div");
+  languageContainer.setAttribute("class", "language-container");
+  languageName = document.createElement("div");
+  languageName.textContent = language;
+  languageName.setAttribute("class", "language-name");
+  languageContainer.appendChild(languageName);
+  languageChart = document.createElement("div");
+  languageChart.setAttribute("class", "language-chart");
+  chart = document.createElement("div");
+  chart.setAttribute("class", "chart");
+  chart.style.width = `${(value / 95) * 100}%`;
+  languageChart.append(chart);
+  languageContainer.append(languageChart);
+  languageValue = document.createElement("div");
+  languageValue.setAttribute("class", "language-value");
+  languageValue.textContent = value.toLocaleString("en-US");
+  languageContainer.append(languageValue);
+  countryMother.appendChild(languageContainer);
+};
+
+buttonLanguage.addEventListener("click", () => {
+  if (languageOn || populationOn) {
+    countryMother.innerHTML = "";
+    mostSpokenLanguages(countries, 10);
+    resultLang.forEach((item) => {
+      languageDisplay(item.country, item.count);
+    });
+  } else {
+    mostSpokenLanguages(countries, 10);
+    resultLang.forEach((item) => {
+      languageDisplay(item.country, item.count);
+    });
+    languageOn = true;
   }
 });
