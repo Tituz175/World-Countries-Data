@@ -139,7 +139,7 @@ let languageDisplay = (language, value) => {
   languageChart.setAttribute("class", "language-chart");
   chart = document.createElement("div");
   chart.setAttribute("class", "chart");
-  chart.style.width = `${(value / 95) * 100}%`;
+  chart.style.width = `${(value / 91) * 100}%`;
   languageChart.append(chart);
   languageContainer.append(languageChart);
   languageValue = document.createElement("div");
