@@ -1,60 +1,84 @@
-body{
-    font-family: Montserrat;
-    margin: 0px;
-    padding: 0px;
+body {
+  font-family: Montserrat;
+  margin: 0px;
+  padding: 0px;
 }
-#countries{
-    text-align: center;
-    padding-bottom: 5px;
-    box-shadow: inset 2px -2px 5px 0.5px rgba(77, 73, 73, 0.452);
-    box-sizing: border-box;
-    width: 99%;
-    margin: 0px auto;
+#countries {
+  text-align: center;
+  padding-bottom: 5px;
+  box-shadow: inset 2px -2px 5px 0.5px rgba(77, 73, 73, 0.452);
+  box-sizing: border-box;
+  width: 99%;
+  margin: 0px auto;
 }
-#countries h1{
-    font-size: 3.5rem;
-    font-weight: 500;
-    margin: 0px auto 5px;
-    padding-top: 30px; 
-    color: #f59e0b;
+#countries h1 {
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin: 0px auto 5px;
+  padding-top: 30px;
+  color: #f59e0b;
 }
-#countries p{
-    font-size: 1.5rem;
-    margin: 2px auto 30px;
-    color: #374151;
-
+#countries p {
+  font-size: 1.5rem;
+  margin: 2px auto 30px;
+  color: #374151;
 }
-main{
-    text-align: center;
+main {
+  text-align: center;
 }
-.wrapper{
-    margin-top: 35px;
+.wrapper {
+  margin-top: 35px;
 }
-button{
-    min-width: 7%;
-    border: 0px;
-    font-size: 23px;
-    padding: 10px 5px;
-    text-align: center;
-    box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.712);
-    background-color: #f59e0b;
-    border-radius: 5px;
-    margin-left: 8px;
+button {
+  min-width: 7%;
+  border: 0px;
+  font-size: 23px;
+  padding: 10px 5px;
+  text-align: center;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.712);
+  background-color: #f59e0b;
+  border-radius: 5px;
+  margin-left: 8px;
 }
-.graph-title{
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 2px auto 30px;
-    color: #374151;
+.graph-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 2px auto 30px;
+  color: #374151;
 }
-.graphs{
-    box-shadow: inset 2px -2px 5px 0.5px rgba(77, 73, 73, 0.452);
-    width: 99%;
-    height: 60vh;
-    margin: 0px auto;
+.graphs {
+  box-shadow: inset 2px -2px 5px 0.5px rgba(77, 73, 73, 0.452);
+  width: 99%;
+  min-height: 60vh;
+  margin: 0px auto;
+  padding: 10px 0px;
 }
-#stat{
-    max-width: 70%;
-    margin: 0px auto;
+#stat {
+  max-width: 80%;
+  margin: 0px auto;
+}
+.population-container {
+  display: flex;
+  margin: 10px auto;
+  border: 0px solid red;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.country-name {
+  font-size: 25px;
+  text-align: left;
+  width: 25%;
+}
+.country-chart {
+  width: 45%;
+}
+.chart {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #f59e0b;
+}
+.country-value{
+    width: 25%;
+    text-align: left;
 }

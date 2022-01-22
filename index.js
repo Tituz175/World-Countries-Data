@@ -1,3 +1,5 @@
+const buttonPopulation = document.querySelector(".population");
+
 let mostSpokenLanguages = (countries, number) => {
   // getting the whole languages from the countries object saving them inside language array
   const language = [];
@@ -39,15 +41,22 @@ let mostSpokenLanguages = (countries, number) => {
 
 console.log(mostSpokenLanguages(countries, 10));
 
-let totalPopulation = 0
+let totalPopulation = 0;
+let worldPopulation = () => {
+  countries.forEach(({ population }) => {
+    totalPopulation += population;
+  });
+  return totalPopulation;
+};
+
+let finalResult;
 let mostPopulatedCountries = (countries, number) => {
-  let finalResult = [];
+  finalResult = [];
   let sortOutcome = countries.sort(function (a, b) {
-    totalPopulation += (a.population + b.population)
+    totalPopulation += a.population + b.population;
     if (a.population > b.population) return -1;
     if (a.population < b.population) return 1;
     return 0;
-    
   });
   for (let i = 0; i < number; i++) {
     let currentCountry = {};
@@ -58,11 +67,53 @@ let mostPopulatedCountries = (countries, number) => {
   return finalResult;
 };
 
-console.log(mostPopulatedCountries(countries, 15))
-console.log(totalPopulation)
+console.log(mostPopulatedCountries(countries, 15));
+console.log(totalPopulation);
 
-// countries.forEach(({population})=>{
-//     totalPopulation += population
-// })
-// console.log(totalPopulation)
-// 7349137231
+const countryMother = document.querySelector("#stat");
+
+let populationContainer;
+let countryName;
+let countryChart;
+let chart;
+let countryValue;
+let populationOn = false;
+
+let populationDisplay = (world = "World", population = 7693165599) => {
+  populationContainer = document.createElement("div");
+  populationContainer.setAttribute("class", "population-container");
+  countryName = document.createElement("div");
+  countryName.textContent = world;
+  countryName.setAttribute("class", "country-name");
+  populationContainer.appendChild(countryName);
+  countryChart = document.createElement("div");
+  countryChart.setAttribute("class", "country-chart");
+  chart = document.createElement("div");
+  chart.setAttribute("class", "chart");
+  chart.style.width = `${(population / 7693165599) * 100}%`;
+  countryChart.append(chart);
+  populationContainer.append(countryChart);
+  countryValue = document.createElement("div");
+  countryValue.setAttribute("class", "country-value");
+  countryValue.textContent = population.toLocaleString("en-US");
+  populationContainer.append(countryValue);
+  countryMother.appendChild(populationContainer);
+};
+
+buttonPopulation.addEventListener("click", () => {
+  if (populationOn) {
+    countryMother.innerHTML = "";
+    populationDisplay();
+    mostPopulatedCountries(countries, 10);
+    finalResult.forEach((item) => {
+      populationDisplay(item.name, item.population);
+    });
+  } else {
+    populationDisplay();
+    mostPopulatedCountries(countries, 10);
+    finalResult.forEach((item) => {
+      populationDisplay(item.name, item.population);
+    });
+    populationOn = true;
+  }
+});
