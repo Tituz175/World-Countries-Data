@@ -1,19 +1,24 @@
+// my variables
 const buttonPopulation = document.querySelector(".population");
 const buttonLanguage = document.querySelector(".languages");
 const chatTitle = document.querySelector(".graph-title");
 const subTitle = document.querySelector(".subtitle");
-
-subTitle.textContent = `Current, we have ${countries.length} countries`
-
+const countryMother = document.querySelector("#stat");
 let totalPopulation = 0;
-let worldPopulation = () => {
-  countries.forEach(({ population }) => {
-    totalPopulation += population;
-  });
-  return totalPopulation;
-};
-
 let finalResult;
+let populationContainer;
+let countryName;
+let countryChart;
+let chart;
+let countryValue;
+let populationOn = false;
+let resultLang;
+let languageOn = false;
+
+// formatting of the subtitle element
+subTitle.textContent = `Current, we have ${countries.length} countries`;
+
+// this function gets the most populated country and return an []
 let mostPopulatedCountries = (countries, number) => {
   finalResult = [];
   let sortOutcome = countries.sort(function (a, b) {
@@ -31,18 +36,7 @@ let mostPopulatedCountries = (countries, number) => {
   return finalResult;
 };
 
-console.log(mostPopulatedCountries(countries, 15));
-console.log(totalPopulation);
-
-const countryMother = document.querySelector("#stat");
-
-let populationContainer;
-let countryName;
-let countryChart;
-let chart;
-let countryValue;
-let populationOn = false;
-
+// this function create, style and format the population elements
 let populationDisplay = (world = "World", population = 7693165599) => {
   chatTitle.textContent = "10 Most populated countries in the world";
   populationContainer = document.createElement("div");
@@ -65,6 +59,7 @@ let populationDisplay = (world = "World", population = 7693165599) => {
   countryMother.appendChild(populationContainer);
 };
 
+// eventlistener trigger by the button population
 buttonPopulation.addEventListener("click", () => {
   if (populationOn || languageOn) {
     countryMother.innerHTML = "";
@@ -83,7 +78,7 @@ buttonPopulation.addEventListener("click", () => {
   }
 });
 
-let resultLang;
+// this function gets the most spoken language and return an []
 let mostSpokenLanguages = (countries, number) => {
   // getting the whole languages from the countries object saving them inside language array
   const language = [];
@@ -123,10 +118,7 @@ let mostSpokenLanguages = (countries, number) => {
   return resultLang;
 };
 
-console.log(mostSpokenLanguages(countries, 10));
-
-let languageOn = false;
-
+//  this function create, style and format the language elements
 let languageDisplay = (language, value) => {
   chatTitle.textContent = "10 Most spoken languages in the world";
   languageContainer = document.createElement("div");
@@ -149,6 +141,7 @@ let languageDisplay = (language, value) => {
   countryMother.appendChild(languageContainer);
 };
 
+// eventlistener trigger by the button language
 buttonLanguage.addEventListener("click", () => {
   if (languageOn || populationOn) {
     countryMother.innerHTML = "";

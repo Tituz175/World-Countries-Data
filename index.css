@@ -58,19 +58,21 @@ button {
   max-width: 80%;
   margin: 0px auto;
 }
-.population-container,.language-container {
+.population-container,
+.language-container {
   display: flex;
   margin: 10px auto;
-  border: 0px solid red;
   align-items: center;
   justify-content: space-evenly;
 }
-.country-name,.language-name {
+.country-name,
+.language-name {
   font-size: 25px;
   text-align: left;
   width: 25%;
 }
-.country-chart,.language-chart {
+.country-chart,
+.language-chart {
   width: 45%;
 }
 .chart {
@@ -78,7 +80,8 @@ button {
   border-radius: 5px;
   background-color: #f59e0b;
 }
-.country-value,.language-value {
+.country-value,
+.language-value {
   width: 25%;
   text-align: left;
 }
